@@ -1,0 +1,36 @@
+
+{% if error_message %}
+    <p> {{error_message}} </p>
+{% endif %}
+{% if weather_data %}
+    <h1> {{weather_data.city}} </h1>
+    <h2> {{weather_data.temperature}} </h2>
+    <h3> {{weather_data.description}} </h3>
+    <img src="{{weather_data.icon_url}}" alt="{{weather_data.description}}">
+    <p> {{weather_data.humidity}} </p>
+    <p> {{weather_data.wind_speed}} </p>
+    <!-- <p> {{weather_data.geo_coordinates}} </p>
+    <p> {{weather_data.requested_time}} </p>
+    <p> {{weather_data.requested_date}} </p> -->
+    
+
+{% endif %}
+
+{% if daily_forecast %}
+
+<h2> 5 Day Forecasts</h2>
+<div class="forecast-container">
+    {% for forecast in daily_forecasts %}
+        <div class="forecast"></div>
+            <h3> {{forecast.date}} </h3>
+            <h4> {{forecast.temperature}} </h4>
+            <h5> {{forecast.description}} </h5>
+            <img src="{{forecast.icon_url}}" alt="{{forecast.description}}">
+            <p> {{forecast.humidity}} </p>
+            <p> {{forecast.wind_speed}} </p>
+        </div>
+    {% endfor %}
+</div>
+
+{% endif %}
+
