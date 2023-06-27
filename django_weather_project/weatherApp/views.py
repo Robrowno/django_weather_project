@@ -14,6 +14,20 @@ def home(request):
     if request.method == 'POST':
         city1 = request.POST['city1']
         city2 = request.get('city2', None)
+
+        weather_data1, daily_forecast1 = fetch_weather_and_forecast(city1, API_KEY, current_weather_url, forcast_weather_url)
+        if city2:
+            weather_data2, daily_forecast2 = fetch_weather_and_forecast(city2, API_KEY, current_weather_url, forcast_weather_url)
+        else:
+            weather_data2, daily_forecast2 = None, None
+        
+        context = {
+            'weather_data1': weather_data1,
+            'daily_forecast1': daily_forecast1,
+            'weather_data2': weather_data2,
+            'daily_forecast2': daily_forecast2,
+        }
+        return render(request, 'weatherApp/home.html', context)
     else:
         return render(request, 'weatherApp/home.html')
     
